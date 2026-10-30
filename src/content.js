@@ -10,7 +10,7 @@ export const profile = {
   typedIntro:
     "I turn messy data into investment decisions: Power BI, SQL, BigQuery and AI-assisted pipelines.",
   heroBio: "At Peak XV Partners I build Power BI dashboards, SQL and BigQuery models, and AI-assisted pipelines that help investors decide faster.",
-  github: "https://github.com/Rakesh-rkox",
+  github: "https://github.com/rakeshmeshua",
   linkedin: "https://linkedin.com/in/rakesh023",
   email: "rakeshmeshua@gmail.com",
   resume: "Rakesh_Meshua_Resume.pdf", // file in public/ (no leading slash, so it works on GitHub Pages sub-paths); "" falls back to an email link
