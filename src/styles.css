@@ -159,3 +159,34 @@ a { color: inherit; }
   .hero__desc { max-width: none; }
   .navbar__pill a:not(.navbar__logo) { font-size: .7rem; }
 }
+
+/* ============ SMALL PHONES (short screens): keep the whole hero on the first screen ============ */
+@media (max-width: 700px) and (max-height: 720px) {
+  .navbar { top: 12px; }
+  .navbar__pill { padding: 6px 18px; gap: 12px; }
+  .character-canvas { --ch: clamp(200px, 33svh, 280px); margin-top: 64px; margin-bottom: 0; }
+  .bubble { width: 54px; height: 54px; } .bubble--linkedin { width: 46px; height: 46px; }
+  .bubble-icon { width: 22px; height: 22px; }
+  .bubble--github { top: 19%; left: 5%; } .bubble--linkedin { top: 15%; right: 5%; }
+  .hero__content { padding-bottom: 20px; }
+  .hero__hi { font-size: .7rem; letter-spacing: .26em; }
+  .hero__name { font-size: clamp(3.1rem, 15vw, 4rem); }
+  .hero__role { margin-top: .3em; font-size: .72rem; letter-spacing: .2em; }
+  .hero__desc { margin-top: .7em; font-size: .85rem; line-height: 1.5; }
+  .hero__actions { margin-top: 16px; gap: 10px; }
+  .pill { padding: 10px 20px; font-size: .84rem; }
+}
+
+/* ============ PHONES HELD SIDEWAYS: text on the left, character on the right ============ */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero { height: 100svh; min-height: 0; flex-direction: row; align-items: flex-end; justify-content: flex-start; }
+  .character-canvas { --ch: 80svh; position: absolute; bottom: 0; left: calc(76vw - var(--ch) * 8 / 9); right: auto; margin: 0; -webkit-mask-image: none; mask-image: none; }
+  .hero__content { width: min(52%, 420px); padding: 0 clamp(20px, 5vw, 48px) 14px; }
+  .hero__name { font-size: clamp(2.6rem, 11vh, 3.6rem); }
+  .hero__desc { font-size: .8rem; line-height: 1.45; max-width: 36ch; margin-top: .5em; }
+  .hero__hi, .hero__role { font-size: .68rem; }
+  .hero__actions { margin-top: 10px; }
+  .pill { padding: 8px 16px; font-size: .78rem; }
+  .bubble--github { top: 26%; left: 52%; } .bubble--linkedin { top: 18%; right: 3%; }
+  .navbar { top: 8px; }
+}
