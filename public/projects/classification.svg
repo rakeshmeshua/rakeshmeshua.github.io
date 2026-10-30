@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="17 0 1500 937" font-family="Inter, 'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f9ff"/><stop offset="1" stop-color="#cfe4f8"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#1f7fd1" stop-opacity=".45"/><stop offset="1" stop-color="#1f7fd1" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#1a6fb8"/></marker>
+  </defs>
+  <rect x="-100" y="-100" width="1800" height="1200" fill="url(#bg)"/>
+  <circle cx="800" cy="500" r="520" fill="url(#glow)"/>
+  <g stroke="#0f3c6e" stroke-opacity=".06"><path d="M0 125H1600M0 250H1600M0 375H1600M0 500H1600M0 625H1600M0 750H1600M0 875H1600M200 0V1000M400 0V1000M600 0V1000M800 0V1000M1000 0V1000M1200 0V1000M1400 0V1000"/></g>
+
+  <!-- raw items -->
+  <g transform="translate(280 485) scale(1.15) translate(-280 -485)"><g transform="translate(90 170)">
+    <text x="0" y="0" font-size="20" letter-spacing="3" fill="#1a6fb8" font-family="ui-monospace, Consolas, monospace">RAW INPUT</text>
+    <g font-family="ui-monospace, Consolas, monospace" font-size="19" fill="#0b2540">
+      <rect y="30" width="380" height="64" rx="14" fill="#ffffff" stroke="#0f3c6e" stroke-opacity=".16"/><text x="22" y="70">"Paneer Tikka Wrap"</text>
+      <rect y="112" width="380" height="64" rx="14" fill="#ffffff" stroke="#0f3c6e" stroke-opacity=".16"/><text x="22" y="152">"Cold Brew, Large"</text>
+      <rect y="194" width="380" height="64" rx="14" fill="#ffffff" stroke="#0f3c6e" stroke-opacity=".16"/><text x="22" y="234">"Truffle Fries"</text>
+      <rect y="276" width="380" height="64" rx="14" fill="#ffffff" stroke="#0f3c6e" stroke-opacity=".16"/><text x="22" y="316">"Koramangala, Bengaluru"</text>
+      <rect y="358" width="380" height="64" rx="14" fill="#ffffff" stroke="#0f3c6e" stroke-opacity=".16"/><text x="22" y="398">"Choc Lava Cake"</text>
+      <rect y="440" width="380" height="64" rx="14" fill="#ffffff" stroke="#0f3c6e" stroke-opacity=".16" opacity=".6"/><text x="22" y="480" opacity=".6">"HSR Layout, Bengaluru"</text>
+    </g>
+    <text x="0" y="590" font-size="24" font-weight="700" fill="#0b2540">3,000+ menu items</text>
+    <text x="0" y="624" font-size="24" font-weight="700" fill="#0b2540">600+ locations</text>
+  </g></g>
+
+  <path d="M510 420H625" stroke="#1a6fb8" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round" marker-end="url(#arr)"/>
+
+  <!-- prompt / model -->
+  <g transform="translate(825 460) scale(1.15) translate(-825 -460)"><g transform="translate(660 250)">
+    <rect width="330" height="420" rx="26" fill="#08111c" stroke="#1a6fb8" stroke-opacity=".5" stroke-width="2"/>
+    <text x="30" y="56" font-size="19" letter-spacing="3" fill="#8fd0ff" font-family="ui-monospace, Consolas, monospace">PROMPT</text>
+    <g font-family="ui-monospace, Consolas, monospace" font-size="16" fill="#e6f2ffcc">
+      <text x="30" y="106">role: classifier</text>
+      <text x="30" y="140">rules: taxonomy v3</text>
+      <text x="30" y="174">examples: few-shot</text>
+      <text x="30" y="208">output: JSON label</text>
+    </g>
+    <g stroke="#8fd0ff" stroke-opacity=".6" stroke-width="2" fill="#0f1c2d">
+      <path d="M90 300L165 262L240 300L240 350L165 388L90 350Z" fill="#1f7fd1" fill-opacity=".25"/>
+    </g>
+    <circle cx="165" cy="325" r="16" fill="#8fd0ff"/>
+  </g></g>
+
+  <path d="M1025 420H1095" stroke="#1a6fb8" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round" marker-end="url(#arr)"/>
+
+  <!-- labelled output -->
+  <g transform="translate(1289 430) scale(1.15) translate(-1289 -430)"><g transform="translate(1130 170)">
+    <text x="0" y="0" font-size="20" letter-spacing="3" fill="#1a6fb8" font-family="ui-monospace, Consolas, monospace">CLASSIFIED</text>
+    <g font-size="20" font-weight="600">
+      <rect y="30" width="150" height="46" rx="23" fill="#1f7fd1" fill-opacity=".3" stroke="#1a6fb8" stroke-opacity=".6"/><text x="75" y="60" text-anchor="middle" fill="#0b2540">Mains</text>
+      <rect x="168" y="30" width="150" height="46" rx="23" fill="#1f7fd1" fill-opacity=".3" stroke="#1a6fb8" stroke-opacity=".6"/><text x="243" y="60" text-anchor="middle" fill="#0b2540">Beverages</text>
+      <rect y="94" width="150" height="46" rx="23" fill="#1f7fd1" fill-opacity=".3" stroke="#1a6fb8" stroke-opacity=".6"/><text x="75" y="124" text-anchor="middle" fill="#0b2540">Sides</text>
+      <rect x="168" y="94" width="150" height="46" rx="23" fill="#1f7fd1" fill-opacity=".3" stroke="#1a6fb8" stroke-opacity=".6"/><text x="243" y="124" text-anchor="middle" fill="#0b2540">Desserts</text>
+      <rect y="158" width="318" height="46" rx="23" fill="#0f3c6e" fill-opacity=".07" stroke="#0f3c6e" stroke-opacity=".3"/><text x="159" y="188" text-anchor="middle" fill="#0b2540">Location: City / Area</text>
+    </g>
+    <!-- precision ring -->
+    <g transform="translate(159 410)">
+      <circle r="110" fill="none" stroke="#0f3c6e" stroke-opacity=".12" stroke-width="22"/>
+      <circle r="110" fill="none" stroke="#1a6fb8" stroke-width="22" stroke-linecap="round" stroke-dasharray="636 692" transform="rotate(-90)"/>
+      <text y="14" text-anchor="middle" font-size="56" font-weight="700" fill="#0b2540">92%</text>
+      <text y="158" text-anchor="middle" font-size="17" letter-spacing="2" fill="#1a6fb8" font-family="ui-monospace, Consolas, monospace">AUDITED PRECISION</text>
+    </g>
+  </g></g>
+</svg>
