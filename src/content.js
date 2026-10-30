@@ -13,7 +13,7 @@ export const profile = {
   github: "https://github.com/Rakesh-rkox",
   linkedin: "https://linkedin.com/in/rakesh023",
   email: "rakeshmeshua@gmail.com",
-  resume: "",                     // e.g. "/resume.pdf" (put the file in public/); "" hides the link
+  resume: "Rakesh_Meshua_Resume.pdf", // file in public/ (no leading slash, so it works on GitHub Pages sub-paths); "" falls back to an email link
 };
 
 export const nav = [
