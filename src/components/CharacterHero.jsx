@@ -17,12 +17,24 @@ const lerpAngle = (a, b, t) => {
   return a + d * t;
 };
 
-const load = (src) => new Promise((resolve) => {
+const loadImg = (src) => new Promise((resolve) => {
   const img = new Image();
   img.onload = () => (img.decode ? img.decode().catch(() => {}).then(() => resolve(img)) : resolve(img));
   img.onerror = () => resolve(null);
   img.src = src;
 });
+
+// An ImageBitmap is already decoded, so drawing it costs almost nothing. A plain <img> is re-decoded on first draw and again
+// whenever the browser's (small, esp. on phones) decoded-image cache evicts it, which made the head janky on each new pose.
+const load = async (src) => {
+  if (typeof createImageBitmap === "function") {
+    try {
+      const res = await fetch(src);
+      if (res.ok) return await createImageBitmap(await res.blob());
+    } catch { /* fall through to <img> */ }
+  }
+  return loadImg(src);
+};
 
 const SMALL_SCREEN = window.matchMedia("(pointer: coarse), (max-width: 700px)").matches;
 
