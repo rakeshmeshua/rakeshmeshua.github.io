@@ -77,8 +77,10 @@ function Work() {
         <div className="work__grid">
           {projects.map((p, i) => (
             <article className="poster" key={p.title} data-reveal style={{ "--i": i }}>
-              <div className="poster__media" style={p.image ? { backgroundImage: `url(${import.meta.env.BASE_URL}${p.image.replace(/^\//, "")})` } : undefined}>
-                {!p.image && <span className="poster__num">{String(i + 1).padStart(2, "0")}</span>}
+              <div className="poster__media">
+                {p.image
+                  ? <img className="poster__img" src={`${import.meta.env.BASE_URL}${p.image.replace(/^\//, "")}`} alt="" loading="lazy" decoding="async" width="1200" height="690" />
+                  : <span className="poster__num">{String(i + 1).padStart(2, "0")}</span>}
               </div>
               <div className="poster__body">
                 <h3>{p.title}</h3>
@@ -125,7 +127,7 @@ function About() {
     <section className="horizontal-about" id="about" ref={secRef}>
       <div className="horizontal-about__bg-clip"><div className="horizontal-about__grid" /></div>
       <div className="horizontal-about__viewport">
-        <span className="horizontal-about__kicker">● About</span>
+        <span className="horizontal-about__kicker"><span className="kicker-dot" aria-hidden="true">●</span>About</span>
         <div className="horizontal-about__track" ref={trackRef}>
           {aboutCards.map((c) => (
             <article className="hcard" key={c.kicker}>

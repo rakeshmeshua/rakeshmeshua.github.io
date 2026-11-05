@@ -8,15 +8,17 @@ export default function ParticleField({ density = 0.00005, color = "26,111,184",
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let w = 0, h = 0, pts = [], raf = 0;
+    const small = window.matchMedia("(pointer: coarse), (max-width: 700px)").matches;   // phones: fewer dots, no O(n²) line pass
+    let w = 0, h = 0, pts = [], raf = 0, visible = true;
     const mouse = { x: -999, y: -999 };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      if (small && w && canvas.clientWidth === w) return;   // mobile URL-bar show/hide fires resize while scrolling: don't rebuild
+      const dpr = small ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(140, Math.floor(w * h * density));
+      const count = Math.min(small ? 45 : 140, Math.floor(w * h * density * (small ? 0.5 : 1)));
       pts = Array.from({ length: count }, () => ({
         x: Math.random() * w, y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
@@ -25,6 +27,7 @@ export default function ParticleField({ density = 0.00005, color = "26,111,184",
     };
 
     const draw = () => {
+      if (!visible) return;                                // off-screen: stop the loop; the observer restarts it
       ctx.clearRect(0, 0, w, h);
       for (const p of pts) {
         const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
@@ -36,7 +39,7 @@ export default function ParticleField({ density = 0.00005, color = "26,111,184",
         ctx.fillStyle = `rgba(${color},.55)`;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
       }
-      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      if (!small) for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
         const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = dx * dx + dy * dy;
         if (d < 9000) {
           ctx.strokeStyle = `rgba(${color},${0.12 * (1 - d / 9000)})`;
@@ -48,10 +51,15 @@ export default function ParticleField({ density = 0.00005, color = "26,111,184",
 
     const onMove = (e) => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; };
     resize();
+    const io = new IntersectionObserver(([e]) => {
+      const was = visible; visible = e.isIntersecting;
+      if (visible && !was && !reduced) { cancelAnimationFrame(raf); draw(); }
+    });
+    io.observe(canvas);
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMove);
     if (reduced) draw(), cancelAnimationFrame(raf); else draw();
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", resize); window.removeEventListener("mousemove", onMove); };
+    return () => { cancelAnimationFrame(raf); io.disconnect(); window.removeEventListener("resize", resize); window.removeEventListener("mousemove", onMove); };
   }, [density, color]);
 
   return <canvas ref={canvasRef} className={`particle-field ${className}`} aria-hidden="true" />;

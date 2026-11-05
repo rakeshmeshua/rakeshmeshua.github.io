@@ -24,6 +24,8 @@ const load = (src) => new Promise((resolve) => {
   img.src = src;
 });
 
+const SMALL_SCREEN = window.matchMedia("(pointer: coarse), (max-width: 700px)").matches;
+
 // Frame order: a coarse spread first so the head can already move everywhere, then fill in the gaps.
 const LOAD_ORDER = [...new Set([8, 4, 2, 1].flatMap((s) => Array.from({ length: N }, (_, i) => i).filter((i) => i % s === 0)))];
 
@@ -120,9 +122,11 @@ export default function CharacterHero() {
       if (dead) return;
       cur = -2; canvas.dataset.ready = "1";
       let next = 0;
+      // phones: every 4th frame (32 instead of 128) -> ~4x less to download and keep decoded in memory; nearest() covers the gaps
+      const order = SMALL_SCREEN ? LOAD_ORDER.filter((i) => i % 4 === 0) : LOAD_ORDER;
       const worker = async () => {                       // a few at a time so the first frames are not starved by the rest
-        while (!dead && next < LOAD_ORDER.length) {
-          const i = LOAD_ORDER[next++];
+        while (!dead && next < order.length) {
+          const i = order[next++];
           frames[i] = await load(`${BASE}frames/f${String(i).padStart(3, "0")}.webp`);
         }
       };

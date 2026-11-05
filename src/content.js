@@ -29,14 +29,14 @@ export const projects = [
     blurb: "Power BI decision board for 57 in-flight projects: health, SPI/CPI, risk and a Terminate / Pause / Recover / Accelerate call on each. Built for FP20 Analytics Challenge 41.",
     tags: ["Power BI", "DAX", "ZoomCharts"],
     link: "",
-    image: "/projects/pmo-1.png",
+    image: "/projects/pmo-1.webp",
   },
   {
     title: "Business Insights 360",
     blurb: "Multi-view Power BI suite covering Finance (P&L), Sales, Marketing, Supply Chain forecast accuracy and an Executive summary.",
     tags: ["Power BI", "DAX", "Finance Analytics"],
     link: "",
-    image: "/projects/bi360.png",
+    image: "/projects/bi360.webp",
   },
   {
     title: "AI Web Scraping Tool",
